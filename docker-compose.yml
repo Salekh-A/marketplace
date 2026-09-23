@@ -1,0 +1,128 @@
+services:
+  orders-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: orders
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - orders_data:/var/lib/postgresql/data
+      - ./order/migrations/001_create_orders.up.sql:/docker-entrypoint-initdb.d/001_create_orders.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d orders"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  products-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: products
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - products_data:/var/lib/postgresql/data
+      - ./product/migrations/001_create_products.up.sql:/docker-entrypoint-initdb.d/001_create_products.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d products"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  analytics-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: analytics
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - analytics_data:/var/lib/postgresql/data
+      - ./analytics/migrations/001_create_analytics_orders.up.sql:/docker-entrypoint-initdb.d/001_create_analytics_orders.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d analytics"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  order:
+    build:
+      context: ./order
+      dockerfile: Dockerfile
+    environment:
+      SERVER_ADDRESS: ":8081"
+      DATABASE_DSN: "postgres://postgres:postgres@orders-db:5432/orders?sslmode=disable"
+      ANALYTICS_ADDRESS: "analytics:9093"
+      PRODUCT_ADDRESS: "product:9092"
+    depends_on:
+      orders-db:
+        condition: service_healthy
+      analytics:
+        condition: service_started
+      product:
+        condition: service_started
+    ports:
+      - "8081:8081"
+      - "9091:9091"
+
+  product:
+    build:
+      context: ./product
+      dockerfile: Dockerfile
+    environment:
+      SERVER_ADDRESS: ":8082"
+      DATABASE_DSN: "postgres://postgres:postgres@products-db:5432/products?sslmode=disable"
+    depends_on:
+      products-db:
+        condition: service_healthy
+    ports:
+      - "8082:8082"
+      - "9092:9092"
+
+  analytics:
+    build:
+      context: ./analytics
+      dockerfile: Dockerfile
+    environment:
+      SERVER_ADDRESS: ":8083"
+      DATABASE_DSN: "postgres://postgres:postgres@analytics-db:5432/analytics?sslmode=disable"
+      REDIS_ADDRESS: "redis:6379"
+    depends_on:
+      analytics-db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    ports:
+      - "8083:8083"
+      - "9093:9093"
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    environment:
+      SERVER_ADDRESS: ":8080"
+      ORDER_ADDRESS: "order:9091"
+      PRODUCT_ADDRESS: "product:9092"
+      ANALYTICS_ADDRESS: "analytics:9093"
+    depends_on:
+      - order
+      - product
+      - analytics
+    ports:
+      - "8080:8080"
+
+volumes:
+  orders_data:
+  products_data:
+  analytics_data:

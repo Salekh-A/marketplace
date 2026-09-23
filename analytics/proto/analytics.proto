@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package analytics;
+
+option go_package = "analytics/internal/grpc";
+
+service AnalyticsService {
+  rpc GetRevenue(GetRevenueRequest) returns (GetRevenueResponse);
+  rpc GetOrders(GetOrdersRequest) returns (GetOrdersResponse);
+  rpc GetAverageCheck(GetAverageCheckRequest) returns (GetAverageCheckResponse);
+  rpc RecordOrder(RecordOrderRequest) returns (RecordOrderResponse);
+}
+
+message GetRevenueRequest {}
+
+message GetRevenueResponse {
+  double revenue = 1;
+}
+
+message GetOrdersRequest {}
+
+message GetOrdersResponse {
+  int32 orders = 1;
+}
+
+message GetAverageCheckRequest {}
+
+message GetAverageCheckResponse {
+  double average = 1;
+}
+
+message RecordOrderRequest {
+  string id = 1;
+  string product_id = 2;
+  int32 quantity = 3;
+  double price = 4;
+  string status = 5;
+  string created_at = 6;
+}
+
+message RecordOrderResponse {
+  bool success = 1;
+}
