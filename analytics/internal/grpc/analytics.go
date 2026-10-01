@@ -6,6 +6,7 @@ import (
 
 	"analytics/internal/model"
 	"analytics/internal/service"
+	analyticspb "marketplace-api/gen/analytics"
 )
 
 type AnalyticsService interface {
@@ -26,7 +27,7 @@ type AnalyticsService interface {
 }
 
 type Server struct {
-	UnimplementedAnalyticsServiceServer
+	analyticspb.UnimplementedAnalyticsServiceServer
 	service AnalyticsService
 }
 
@@ -38,50 +39,50 @@ func NewServer(service AnalyticsService) *Server {
 
 func (s *Server) GetRevenue(
 	ctx context.Context,
-	req *GetRevenueRequest,
-) (*GetRevenueResponse, error) {
+	req *analyticspb.GetRevenueRequest,
+) (*analyticspb.GetRevenueResponse, error) {
 	result, err := s.service.GetRevenue(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	return &GetRevenueResponse{
+	return &analyticspb.GetRevenueResponse{
 		Revenue: result.Revenue,
 	}, nil
 }
 
 func (s *Server) GetOrders(
 	ctx context.Context,
-	req *GetOrdersRequest,
-) (*GetOrdersResponse, error) {
+	req *analyticspb.GetOrdersRequest,
+) (*analyticspb.GetOrdersResponse, error) {
 	result, err := s.service.GetOrders(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	return &GetOrdersResponse{
+	return &analyticspb.GetOrdersResponse{
 		Orders: int32(result.Orders),
 	}, nil
 }
 
 func (s *Server) GetAverageCheck(
 	ctx context.Context,
-	req *GetAverageCheckRequest,
-) (*GetAverageCheckResponse, error) {
+	req *analyticspb.GetAverageCheckRequest,
+) (*analyticspb.GetAverageCheckResponse, error) {
 	result, err := s.service.GetAverageCheck(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	return &GetAverageCheckResponse{
+	return &analyticspb.GetAverageCheckResponse{
 		Average: result.Average,
 	}, nil
 }
 
 func (s *Server) RecordOrder(
 	ctx context.Context,
-	req *RecordOrderRequest,
-) (*RecordOrderResponse, error) {
+	req *analyticspb.RecordOrderRequest,
+) (*analyticspb.RecordOrderResponse, error) {
 	createdAt, err := time.Parse(time.RFC3339, req.CreatedAt)
 	if err != nil {
 		return nil, err
@@ -100,7 +101,7 @@ func (s *Server) RecordOrder(
 		return nil, err
 	}
 
-	return &RecordOrderResponse{
+	return &analyticspb.RecordOrderResponse{
 		Success: true,
 	}, nil
 }

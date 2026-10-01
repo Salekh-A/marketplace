@@ -3,6 +3,7 @@ package grpc
 import (
 	"context"
 
+	orderpb "marketplace-api/gen/order"
 	"order/internal/model"
 	"order/internal/service"
 )
@@ -27,7 +28,7 @@ type OrderService interface {
 }
 
 type Server struct {
-	UnimplementedOrderServiceServer
+	orderpb.UnimplementedOrderServiceServer
 	service OrderService
 }
 
@@ -39,14 +40,14 @@ func NewServer(service OrderService) *Server {
 
 func (s *Server) GetOrder(
 	ctx context.Context,
-	req *GetOrderRequest,
-) (*GetOrderResponse, error) {
+	req *orderpb.GetOrderRequest,
+) (*orderpb.GetOrderResponse, error) {
 	order, err := s.service.GetByID(ctx, req.Id)
 	if err != nil {
 		return nil, err
 	}
 
-	return &GetOrderResponse{
+	return &orderpb.GetOrderResponse{
 		Id:        order.ID,
 		ProductId: order.ProductID,
 		Quantity:  int32(order.Quantity),
@@ -57,8 +58,8 @@ func (s *Server) GetOrder(
 
 func (s *Server) CreateOrder(
 	ctx context.Context,
-	req *CreateOrderRequest,
-) (*CreateOrderResponse, error) {
+	req *orderpb.CreateOrderRequest,
+) (*orderpb.CreateOrderResponse, error) {
 	order, err := s.service.Create(
 		ctx,
 		req.ProductId,
@@ -69,7 +70,7 @@ func (s *Server) CreateOrder(
 		return nil, err
 	}
 
-	return &CreateOrderResponse{
+	return &orderpb.CreateOrderResponse{
 		Id:        order.ID,
 		ProductId: order.ProductID,
 		Quantity:  int32(order.Quantity),
@@ -80,14 +81,14 @@ func (s *Server) CreateOrder(
 
 func (s *Server) CancelOrder(
 	ctx context.Context,
-	req *CancelOrderRequest,
-) (*CancelOrderResponse, error) {
+	req *orderpb.CancelOrderRequest,
+) (*orderpb.CancelOrderResponse, error) {
 	err := s.service.Cancel(ctx, req.Id)
 	if err != nil {
 		return nil, err
 	}
 
-	return &CancelOrderResponse{
+	return &orderpb.CancelOrderResponse{
 		Success: true,
 	}, nil
 }

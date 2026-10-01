@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package analytics;
 
-option go_package = "analytics/internal/grpc";
+option go_package = "marketplace-api/gen/analytics";
 
 service AnalyticsService {
   rpc GetRevenue(GetRevenueRequest) returns (GetRevenueResponse);

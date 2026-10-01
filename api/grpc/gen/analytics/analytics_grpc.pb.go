@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v7.36.2
-// source: analytics.proto
+// source: proto/analytics/analytics.proto
 
-package grpc
+package analytics
 
 import (
 	context "context"
@@ -22,6 +22,7 @@ const (
 	AnalyticsService_GetRevenue_FullMethodName      = "/analytics.AnalyticsService/GetRevenue"
 	AnalyticsService_GetOrders_FullMethodName       = "/analytics.AnalyticsService/GetOrders"
 	AnalyticsService_GetAverageCheck_FullMethodName = "/analytics.AnalyticsService/GetAverageCheck"
+	AnalyticsService_RecordOrder_FullMethodName     = "/analytics.AnalyticsService/RecordOrder"
 )
 
 // AnalyticsServiceClient is the client API for AnalyticsService service.
@@ -31,6 +32,7 @@ type AnalyticsServiceClient interface {
 	GetRevenue(ctx context.Context, in *GetRevenueRequest, opts ...grpc.CallOption) (*GetRevenueResponse, error)
 	GetOrders(ctx context.Context, in *GetOrdersRequest, opts ...grpc.CallOption) (*GetOrdersResponse, error)
 	GetAverageCheck(ctx context.Context, in *GetAverageCheckRequest, opts ...grpc.CallOption) (*GetAverageCheckResponse, error)
+	RecordOrder(ctx context.Context, in *RecordOrderRequest, opts ...grpc.CallOption) (*RecordOrderResponse, error)
 }
 
 type analyticsServiceClient struct {
@@ -71,6 +73,16 @@ func (c *analyticsServiceClient) GetAverageCheck(ctx context.Context, in *GetAve
 	return out, nil
 }
 
+func (c *analyticsServiceClient) RecordOrder(ctx context.Context, in *RecordOrderRequest, opts ...grpc.CallOption) (*RecordOrderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RecordOrderResponse)
+	err := c.cc.Invoke(ctx, AnalyticsService_RecordOrder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AnalyticsServiceServer is the server API for AnalyticsService service.
 // All implementations must embed UnimplementedAnalyticsServiceServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type AnalyticsServiceServer interface {
 	GetRevenue(context.Context, *GetRevenueRequest) (*GetRevenueResponse, error)
 	GetOrders(context.Context, *GetOrdersRequest) (*GetOrdersResponse, error)
 	GetAverageCheck(context.Context, *GetAverageCheckRequest) (*GetAverageCheckResponse, error)
+	RecordOrder(context.Context, *RecordOrderRequest) (*RecordOrderResponse, error)
 	mustEmbedUnimplementedAnalyticsServiceServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedAnalyticsServiceServer) GetOrders(context.Context, *GetOrders
 }
 func (UnimplementedAnalyticsServiceServer) GetAverageCheck(context.Context, *GetAverageCheckRequest) (*GetAverageCheckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAverageCheck not implemented")
+}
+func (UnimplementedAnalyticsServiceServer) RecordOrder(context.Context, *RecordOrderRequest) (*RecordOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RecordOrder not implemented")
 }
 func (UnimplementedAnalyticsServiceServer) mustEmbedUnimplementedAnalyticsServiceServer() {}
 func (UnimplementedAnalyticsServiceServer) testEmbeddedByValue()                          {}
@@ -172,6 +188,24 @@ func _AnalyticsService_GetAverageCheck_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AnalyticsService_RecordOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecordOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AnalyticsServiceServer).RecordOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AnalyticsService_RecordOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AnalyticsServiceServer).RecordOrder(ctx, req.(*RecordOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AnalyticsService_ServiceDesc is the grpc.ServiceDesc for AnalyticsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -191,7 +225,11 @@ var AnalyticsService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "GetAverageCheck",
 			Handler:    _AnalyticsService_GetAverageCheck_Handler,
 		},
+		{
+			MethodName: "RecordOrder",
+			Handler:    _AnalyticsService_RecordOrder_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "analytics.proto",
+	Metadata: "proto/analytics/analytics.proto",
 }

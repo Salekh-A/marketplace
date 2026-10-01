@@ -57,8 +57,8 @@ services:
 
   order:
     build:
-      context: ./order
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: order/Dockerfile
     environment:
       SERVER_ADDRESS: ":8081"
       DATABASE_DSN: "postgres://postgres:postgres@orders-db:5432/orders?sslmode=disable"
@@ -77,8 +77,8 @@ services:
 
   product:
     build:
-      context: ./product
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: product/Dockerfile
     environment:
       SERVER_ADDRESS: ":8082"
       DATABASE_DSN: "postgres://postgres:postgres@products-db:5432/products?sslmode=disable"
@@ -91,8 +91,8 @@ services:
 
   analytics:
     build:
-      context: ./analytics
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: analytics/Dockerfile
     environment:
       SERVER_ADDRESS: ":8083"
       DATABASE_DSN: "postgres://postgres:postgres@analytics-db:5432/analytics?sslmode=disable"
@@ -108,8 +108,8 @@ services:
 
   gateway:
     build:
-      context: ./gateway
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: gateway/Dockerfile
     environment:
       SERVER_ADDRESS: ":8080"
       ORDER_ADDRESS: "order:9091"

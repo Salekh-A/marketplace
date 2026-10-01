@@ -3,7 +3,7 @@ package client
 import (
 	"context"
 
-	analyticspb "order/internal/grpc/analytics"
+	analyticspb "marketplace-api/gen/analytics"
 
 	"google.golang.org/grpc"
 )

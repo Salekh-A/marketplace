@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package product;
 
-option go_package = "product/internal/grpc";
+option go_package = "marketplace-api/gen/product";
 
 service ProductService {
   rpc GetProduct(GetProductRequest) returns (GetProductResponse);

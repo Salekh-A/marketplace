@@ -12,6 +12,7 @@ import (
 	"analytics/internal/handler"
 	"analytics/internal/repository"
 	"analytics/internal/service"
+	analyticspb "marketplace-api/gen/analytics"
 
 	"github.com/redis/go-redis/v9"
 	"google.golang.org/grpc"
@@ -52,7 +53,7 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 
-	analyticsgrpc.RegisterAnalyticsServiceServer(
+	analyticspb.RegisterAnalyticsServiceServer(
 		grpcServer,
 		analyticsGRPCServer,
 	)

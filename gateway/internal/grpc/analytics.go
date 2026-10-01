@@ -3,8 +3,8 @@ package grpc
 import (
 	"context"
 
-	analyticspb "gateway/internal/grpc/analytics"
 	"google.golang.org/grpc"
+	analyticspb "marketplace-api/gen/analytics"
 )
 
 type AnalyticsClient struct {

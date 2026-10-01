@@ -2,10 +2,15 @@ FROM golang:1.25 AS builder
 
 WORKDIR /app
 
-COPY go.mod go.sum ./
-RUN go mod download
+COPY analytics/go.mod analytics/go.sum ./analytics/
+COPY api/grpc/go.mod api/grpc/go.sum ./api/grpc/
 
-COPY . .
+RUN cd analytics && go mod download
+
+COPY analytics ./analytics
+COPY api/grpc ./api/grpc
+
+WORKDIR /app/analytics
 
 RUN go build -o analytics ./cmd
 
@@ -13,7 +18,7 @@ FROM debian:bookworm-slim
 
 WORKDIR /app
 
-COPY --from=builder /app/analytics .
+COPY --from=builder /app/analytics/analytics .
 
 EXPOSE 8083
 EXPOSE 9093

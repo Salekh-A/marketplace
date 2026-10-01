@@ -3,8 +3,8 @@ package grpc
 import (
 	"context"
 
-	orderpb "gateway/internal/grpc/order"
 	"google.golang.org/grpc"
+	orderpb "marketplace-api/gen/order"
 )
 
 type OrderClient struct {

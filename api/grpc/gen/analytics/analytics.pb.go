@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v7.36.2
-// source: analytics.proto
+// source: proto/analytics/analytics.proto
 
-package grpc
+package analytics
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -29,7 +29,7 @@ type GetRevenueRequest struct {
 
 func (x *GetRevenueRequest) Reset() {
 	*x = GetRevenueRequest{}
-	mi := &file_analytics_proto_msgTypes[0]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41,7 +41,7 @@ func (x *GetRevenueRequest) String() string {
 func (*GetRevenueRequest) ProtoMessage() {}
 
 func (x *GetRevenueRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_analytics_proto_msgTypes[0]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -54,7 +54,7 @@ func (x *GetRevenueRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRevenueRequest.ProtoReflect.Descriptor instead.
 func (*GetRevenueRequest) Descriptor() ([]byte, []int) {
-	return file_analytics_proto_rawDescGZIP(), []int{0}
+	return file_proto_analytics_analytics_proto_rawDescGZIP(), []int{0}
 }
 
 type GetRevenueResponse struct {
@@ -66,7 +66,7 @@ type GetRevenueResponse struct {
 
 func (x *GetRevenueResponse) Reset() {
 	*x = GetRevenueResponse{}
-	mi := &file_analytics_proto_msgTypes[1]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -78,7 +78,7 @@ func (x *GetRevenueResponse) String() string {
 func (*GetRevenueResponse) ProtoMessage() {}
 
 func (x *GetRevenueResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_analytics_proto_msgTypes[1]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -91,7 +91,7 @@ func (x *GetRevenueResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRevenueResponse.ProtoReflect.Descriptor instead.
 func (*GetRevenueResponse) Descriptor() ([]byte, []int) {
-	return file_analytics_proto_rawDescGZIP(), []int{1}
+	return file_proto_analytics_analytics_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetRevenueResponse) GetRevenue() float64 {
@@ -109,7 +109,7 @@ type GetOrdersRequest struct {
 
 func (x *GetOrdersRequest) Reset() {
 	*x = GetOrdersRequest{}
-	mi := &file_analytics_proto_msgTypes[2]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121,7 +121,7 @@ func (x *GetOrdersRequest) String() string {
 func (*GetOrdersRequest) ProtoMessage() {}
 
 func (x *GetOrdersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_analytics_proto_msgTypes[2]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -134,7 +134,7 @@ func (x *GetOrdersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOrdersRequest.ProtoReflect.Descriptor instead.
 func (*GetOrdersRequest) Descriptor() ([]byte, []int) {
-	return file_analytics_proto_rawDescGZIP(), []int{2}
+	return file_proto_analytics_analytics_proto_rawDescGZIP(), []int{2}
 }
 
 type GetOrdersResponse struct {
@@ -146,7 +146,7 @@ type GetOrdersResponse struct {
 
 func (x *GetOrdersResponse) Reset() {
 	*x = GetOrdersResponse{}
-	mi := &file_analytics_proto_msgTypes[3]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -158,7 +158,7 @@ func (x *GetOrdersResponse) String() string {
 func (*GetOrdersResponse) ProtoMessage() {}
 
 func (x *GetOrdersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_analytics_proto_msgTypes[3]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -171,7 +171,7 @@ func (x *GetOrdersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOrdersResponse.ProtoReflect.Descriptor instead.
 func (*GetOrdersResponse) Descriptor() ([]byte, []int) {
-	return file_analytics_proto_rawDescGZIP(), []int{3}
+	return file_proto_analytics_analytics_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetOrdersResponse) GetOrders() int32 {
@@ -189,7 +189,7 @@ type GetAverageCheckRequest struct {
 
 func (x *GetAverageCheckRequest) Reset() {
 	*x = GetAverageCheckRequest{}
-	mi := &file_analytics_proto_msgTypes[4]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -201,7 +201,7 @@ func (x *GetAverageCheckRequest) String() string {
 func (*GetAverageCheckRequest) ProtoMessage() {}
 
 func (x *GetAverageCheckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_analytics_proto_msgTypes[4]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -214,7 +214,7 @@ func (x *GetAverageCheckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAverageCheckRequest.ProtoReflect.Descriptor instead.
 func (*GetAverageCheckRequest) Descriptor() ([]byte, []int) {
-	return file_analytics_proto_rawDescGZIP(), []int{4}
+	return file_proto_analytics_analytics_proto_rawDescGZIP(), []int{4}
 }
 
 type GetAverageCheckResponse struct {
@@ -226,7 +226,7 @@ type GetAverageCheckResponse struct {
 
 func (x *GetAverageCheckResponse) Reset() {
 	*x = GetAverageCheckResponse{}
-	mi := &file_analytics_proto_msgTypes[5]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -238,7 +238,7 @@ func (x *GetAverageCheckResponse) String() string {
 func (*GetAverageCheckResponse) ProtoMessage() {}
 
 func (x *GetAverageCheckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_analytics_proto_msgTypes[5]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -251,7 +251,7 @@ func (x *GetAverageCheckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAverageCheckResponse.ProtoReflect.Descriptor instead.
 func (*GetAverageCheckResponse) Descriptor() ([]byte, []int) {
-	return file_analytics_proto_rawDescGZIP(), []int{5}
+	return file_proto_analytics_analytics_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetAverageCheckResponse) GetAverage() float64 {
@@ -275,7 +275,7 @@ type RecordOrderRequest struct {
 
 func (x *RecordOrderRequest) Reset() {
 	*x = RecordOrderRequest{}
-	mi := &file_analytics_proto_msgTypes[6]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -287,7 +287,7 @@ func (x *RecordOrderRequest) String() string {
 func (*RecordOrderRequest) ProtoMessage() {}
 
 func (x *RecordOrderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_analytics_proto_msgTypes[6]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -300,7 +300,7 @@ func (x *RecordOrderRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecordOrderRequest.ProtoReflect.Descriptor instead.
 func (*RecordOrderRequest) Descriptor() ([]byte, []int) {
-	return file_analytics_proto_rawDescGZIP(), []int{6}
+	return file_proto_analytics_analytics_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *RecordOrderRequest) GetId() string {
@@ -354,7 +354,7 @@ type RecordOrderResponse struct {
 
 func (x *RecordOrderResponse) Reset() {
 	*x = RecordOrderResponse{}
-	mi := &file_analytics_proto_msgTypes[7]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -366,7 +366,7 @@ func (x *RecordOrderResponse) String() string {
 func (*RecordOrderResponse) ProtoMessage() {}
 
 func (x *RecordOrderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_analytics_proto_msgTypes[7]
+	mi := &file_proto_analytics_analytics_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -379,7 +379,7 @@ func (x *RecordOrderResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecordOrderResponse.ProtoReflect.Descriptor instead.
 func (*RecordOrderResponse) Descriptor() ([]byte, []int) {
-	return file_analytics_proto_rawDescGZIP(), []int{7}
+	return file_proto_analytics_analytics_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *RecordOrderResponse) GetSuccess() bool {
@@ -389,11 +389,11 @@ func (x *RecordOrderResponse) GetSuccess() bool {
 	return false
 }
 
-var File_analytics_proto protoreflect.FileDescriptor
+var File_proto_analytics_analytics_proto protoreflect.FileDescriptor
 
-const file_analytics_proto_rawDesc = "" +
+const file_proto_analytics_analytics_proto_rawDesc = "" +
 	"\n" +
-	"\x0fanalytics.proto\x12\tanalytics\"\x13\n" +
+	"\x1fproto/analytics/analytics.proto\x12\tanalytics\"\x13\n" +
 	"\x11GetRevenueRequest\".\n" +
 	"\x12GetRevenueResponse\x12\x18\n" +
 	"\arevenue\x18\x01 \x01(\x01R\arevenue\"\x12\n" +
@@ -419,22 +419,22 @@ const file_analytics_proto_rawDesc = "" +
 	"GetRevenue\x12\x1c.analytics.GetRevenueRequest\x1a\x1d.analytics.GetRevenueResponse\x12F\n" +
 	"\tGetOrders\x12\x1b.analytics.GetOrdersRequest\x1a\x1c.analytics.GetOrdersResponse\x12X\n" +
 	"\x0fGetAverageCheck\x12!.analytics.GetAverageCheckRequest\x1a\".analytics.GetAverageCheckResponse\x12L\n" +
-	"\vRecordOrder\x12\x1d.analytics.RecordOrderRequest\x1a\x1e.analytics.RecordOrderResponseB\x19Z\x17analytics/internal/grpcb\x06proto3"
+	"\vRecordOrder\x12\x1d.analytics.RecordOrderRequest\x1a\x1e.analytics.RecordOrderResponseB\x1fZ\x1dmarketplace-api/gen/analyticsb\x06proto3"
 
 var (
-	file_analytics_proto_rawDescOnce sync.Once
-	file_analytics_proto_rawDescData []byte
+	file_proto_analytics_analytics_proto_rawDescOnce sync.Once
+	file_proto_analytics_analytics_proto_rawDescData []byte
 )
 
-func file_analytics_proto_rawDescGZIP() []byte {
-	file_analytics_proto_rawDescOnce.Do(func() {
-		file_analytics_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_analytics_proto_rawDesc), len(file_analytics_proto_rawDesc)))
+func file_proto_analytics_analytics_proto_rawDescGZIP() []byte {
+	file_proto_analytics_analytics_proto_rawDescOnce.Do(func() {
+		file_proto_analytics_analytics_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_analytics_analytics_proto_rawDesc), len(file_proto_analytics_analytics_proto_rawDesc)))
 	})
-	return file_analytics_proto_rawDescData
+	return file_proto_analytics_analytics_proto_rawDescData
 }
 
-var file_analytics_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
-var file_analytics_proto_goTypes = []any{
+var file_proto_analytics_analytics_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_proto_analytics_analytics_proto_goTypes = []any{
 	(*GetRevenueRequest)(nil),       // 0: analytics.GetRevenueRequest
 	(*GetRevenueResponse)(nil),      // 1: analytics.GetRevenueResponse
 	(*GetOrdersRequest)(nil),        // 2: analytics.GetOrdersRequest
@@ -444,7 +444,7 @@ var file_analytics_proto_goTypes = []any{
 	(*RecordOrderRequest)(nil),      // 6: analytics.RecordOrderRequest
 	(*RecordOrderResponse)(nil),     // 7: analytics.RecordOrderResponse
 }
-var file_analytics_proto_depIdxs = []int32{
+var file_proto_analytics_analytics_proto_depIdxs = []int32{
 	0, // 0: analytics.AnalyticsService.GetRevenue:input_type -> analytics.GetRevenueRequest
 	2, // 1: analytics.AnalyticsService.GetOrders:input_type -> analytics.GetOrdersRequest
 	4, // 2: analytics.AnalyticsService.GetAverageCheck:input_type -> analytics.GetAverageCheckRequest
@@ -460,26 +460,26 @@ var file_analytics_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_analytics_proto_init() }
-func file_analytics_proto_init() {
-	if File_analytics_proto != nil {
+func init() { file_proto_analytics_analytics_proto_init() }
+func file_proto_analytics_analytics_proto_init() {
+	if File_proto_analytics_analytics_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_analytics_proto_rawDesc), len(file_analytics_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_analytics_analytics_proto_rawDesc), len(file_proto_analytics_analytics_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_analytics_proto_goTypes,
-		DependencyIndexes: file_analytics_proto_depIdxs,
-		MessageInfos:      file_analytics_proto_msgTypes,
+		GoTypes:           file_proto_analytics_analytics_proto_goTypes,
+		DependencyIndexes: file_proto_analytics_analytics_proto_depIdxs,
+		MessageInfos:      file_proto_analytics_analytics_proto_msgTypes,
 	}.Build()
-	File_analytics_proto = out.File
-	file_analytics_proto_goTypes = nil
-	file_analytics_proto_depIdxs = nil
+	File_proto_analytics_analytics_proto = out.File
+	file_proto_analytics_analytics_proto_goTypes = nil
+	file_proto_analytics_analytics_proto_depIdxs = nil
 }

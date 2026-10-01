@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	productpb "order/internal/grpc/product"
+	productpb "marketplace-api/gen/product"
 	"order/internal/model"
 )
 

@@ -5,6 +5,7 @@ import (
 	"net"
 	"net/http"
 
+	productpb "marketplace-api/gen/product"
 	"product/internal/config"
 	"product/internal/database"
 	grpcserver "product/internal/grpc"
@@ -32,7 +33,7 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 
-	grpcserver.RegisterProductServiceServer(
+	productpb.RegisterProductServiceServer(
 		grpcServer,
 		productGRPCServer,
 	)

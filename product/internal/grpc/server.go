@@ -6,6 +6,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
+	productpb "marketplace-api/gen/product"
 	"product/internal/model"
 	"product/internal/service"
 )
@@ -17,7 +18,7 @@ type ProductService interface {
 }
 
 type Server struct {
-	UnimplementedProductServiceServer
+	productpb.UnimplementedProductServiceServer
 	service ProductService
 }
 
@@ -29,14 +30,14 @@ func NewServer(service ProductService) *Server {
 
 func (s *Server) GetProduct(
 	ctx context.Context,
-	req *GetProductRequest,
-) (*GetProductResponse, error) {
+	req *productpb.GetProductRequest,
+) (*productpb.GetProductResponse, error) {
 	product, err := s.service.GetByID(ctx, req.Id)
 	if err != nil {
 		return nil, err
 	}
 
-	return &GetProductResponse{
+	return &productpb.GetProductResponse{
 		Id:    product.ID,
 		Name:  product.Name,
 		Price: product.Price,
@@ -46,19 +47,19 @@ func (s *Server) GetProduct(
 
 func (s *Server) GetProducts(
 	ctx context.Context,
-	req *GetProductsRequest,
-) (*GetProductsResponse, error) {
+	req *productpb.GetProductsRequest,
+) (*productpb.GetProductsResponse, error) {
 	products, err := s.service.GetAll(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetProductsResponse{}
+	response := &productpb.GetProductsResponse{}
 
 	for _, product := range products {
 		response.Products = append(
 			response.Products,
-			&GetProductResponse{
+			&productpb.GetProductResponse{
 				Id:    product.ID,
 				Name:  product.Name,
 				Price: product.Price,
@@ -72,8 +73,8 @@ func (s *Server) GetProducts(
 
 func (s *Server) DecreaseStock(
 	ctx context.Context,
-	req *DecreaseStockRequest,
-) (*DecreaseStockResponse, error) {
+	req *productpb.DecreaseStockRequest,
+) (*productpb.DecreaseStockResponse, error) {
 	err := s.service.DecreaseStock(
 		ctx,
 		req.Id,
@@ -86,7 +87,7 @@ func (s *Server) DecreaseStock(
 		)
 	}
 
-	return &DecreaseStockResponse{
+	return &productpb.DecreaseStockResponse{
 		Success: true,
 	}, nil
 }

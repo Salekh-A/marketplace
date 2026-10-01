@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	orderpb "marketplace-api/gen/order"
 	"net"
 	"net/http"
 
@@ -50,7 +51,7 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 
-	ordergrpc.RegisterOrderServiceServer(
+	orderpb.RegisterOrderServiceServer(
 		grpcServer,
 		orderGRPCServer,
 	)
